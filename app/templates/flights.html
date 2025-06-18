@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Vols - Agence de Voyage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Gestion des Vols</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                <li><a href="{{ url_for('clients') }}">Clients</a></li>
+                <li><a href="{{ url_for('reservations') }}">Réservations</a></li>
+                <li><a href="{{ url_for('destinations') }}">Destinations</a></li>
+                <li><a href="{{ url_for('payments') }}">Paiements</a></li>
+                <li><a href="{{ url_for('agents') }}">Espace Agent</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Liste des Vols</h2>
+        <table class="mb-3">
+            <thead>
+                <tr>
+                    <th>Numéro Vol</th>
+                    <th>Destination</th>
+                    <th>Départ</th>
+                    <th>Arrivée</th>
+                    <th>Prix Billet (€)</th>
+                    <th>Places Disponibles</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Flight Row 1 -->
+                <tr>
+                    <td>V789</td>
+                    <td>Paris</td>
+                    <td>2023-12-01 10:00</td>
+                    <td>2023-12-01 12:00</td>
+                    <td>150.00</td>
+                    <td>50</td>
+                    <td>
+                        <a href="#" class="btn" style="background-color: #ffc107; color: #333;">Modifier</a>
+                        <a href="#" class="btn" style="background-color: #dc3545;">Supprimer</a>
+                    </td>
+                </tr>
+                <!-- Sample Flight Row 2 -->
+                <tr>
+                    <td>V790</td>
+                    <td>New York</td>
+                    <td>2023-12-05 14:30</td>
+                    <td>2023-12-05 22:00</td>
+                    <td>450.00</td>
+                    <td>25</td>
+                    <td>
+                        <a href="#" class="btn" style="background-color: #ffc107; color: #333;">Modifier</a>
+                        <a href="#" class="btn" style="background-color: #dc3545;">Supprimer</a>
+                    </td>
+                </tr>
+                <!-- Sample Flight Row 3 -->
+                <tr>
+                    <td>V230</td>
+                    <td>Tokyo</td>
+                    <td>2023-12-10 08:00</td>
+                    <td>2023-12-11 06:00</td>
+                    <td>750.00</td>
+                    <td>100</td>
+                    <td>
+                        <a href="#" class="btn" style="background-color: #ffc107; color: #333;">Modifier</a>
+                        <a href="#" class="btn" style="background-color: #dc3545;">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Ajouter/Modifier un Vol</h2>
+        <form action="#" method="POST"> <!-- Action will be handled by backend later -->
+            <div>
+                <label for="numero_vol">Numéro de Vol :</label>
+                <input type="text" id="numero_vol" name="numero_vol" required>
+            </div>
+            <div>
+                <label for="destination_vol">Destination :</label>
+                <!-- In a real app, this would likely be a select dropdown populated from the Destinations table -->
+                <input type="text" id="destination_vol" name="destination_vol" placeholder="Nom de la destination" required>
+            </div>
+            <div>
+                <label for="heure_depart">Date et Heure de Départ :</label>
+                <input type="datetime-local" id="heure_depart" name="heure_depart" required>
+            </div>
+            <div>
+                <label for="heure_arrivee">Date et Heure d'Arrivée :</label>
+                <input type="datetime-local" id="heure_arrivee" name="heure_arrivee" required>
+            </div>
+            <div>
+                <label for="prix_billet">Prix du Billet (€) :</label>
+                <input type="number" id="prix_billet" name="prix_billet" step="0.01" min="0" required>
+            </div>
+            <div>
+                <label for="places_disponibles">Places Disponibles :</label>
+                <input type="number" id="places_disponibles" name="places_disponibles" min="0" required>
+            </div>
+            <button type="submit" class="btn">Enregistrer Vol</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2023 Agence de Voyage</p>
+    </footer>
+
+    <script>
+        // Add active class to current page link in nav
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('header nav ul li a');
+            let currentPath = window.location.pathname;
+            if (currentPath.endsWith('/')) {
+                currentPath = currentPath.slice(0, -1);
+            }
+            const currentPageName = currentPath.split('/').pop().replace('.html', '');
+
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                if ( (currentPageName === 'index' || currentPageName === '') && (linkPath.endsWith('/index') || linkPath === '/' || linkPath.endsWith('/index.html')) ){
+                    link.classList.add('active');
+                } else if (linkPath.includes(currentPageName) && currentPageName !== 'index' && currentPageName !== '') {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
