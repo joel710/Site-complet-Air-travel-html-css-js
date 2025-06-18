@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Agent - Agence de Voyage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <header class="bg-gray-800 text-white p-6 shadow-md">
+        <h1 class="text-3xl font-bold text-center">Espace Agent</h1>
+        <nav class="bg-gray-700 p-4 mt-4">
+            <ul class="flex justify-center space-x-6">
+                <li><a href="index.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Accueil</a></li>
+                <li><a href="clients.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Clients</a></li>
+                <li><a href="reservations.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Réservations</a></li>
+                <li><a href="destinations.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Destinations</a></li>
+                <li><a href="flights.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Vols</a></li>
+                <li><a href="payments.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Paiements</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container mx-auto mt-6 mb-6 p-6">
+
+        <!-- Login Form Section -->
+        <section class="max-w-md mx-auto mt-10 p-8 bg-white rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold text-center text-gray-700 mb-8">Connexion Agent</h2>
+            <form action="#" method="POST" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur :</label>
+                    <input type="text" id="username" name="username" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Connexion</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Conceptual Dashboard Section -->
+        <!-- In a real app, this would be shown conditionally after successful login -->
+        <section class="mt-12 p-6 bg-gray-50 rounded-lg shadow-inner">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-6">Tableau de Bord Agent</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1: Manage Reservations -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Gérer les Réservations</h3>
+                    <p class="text-sm text-gray-600">Accéder à la liste des réservations, modifier les statuts, et ajouter de nouvelles réservations pour les clients.</p>
+                    <a href="reservations.html" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800 font-medium">Voir les réservations &rarr;</a>
+                </div>
+
+                <!-- Card 2: Manage Clients -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Gérer les Clients</h3>
+                    <p class="text-sm text-gray-600">Consulter et mettre à jour les informations des clients, voir leur historique de voyage.</p>
+                    <a href="clients.html" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800 font-medium">Voir les clients &rarr;</a>
+                </div>
+
+                <!-- Card 3: Payment Reports -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Rapports de Paiement</h3>
+                    <p class="text-sm text-gray-600">Visualiser l'historique des paiements, filtrer par client ou agent, et générer des rapports.</p>
+                    <a href="payments.html" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800 font-medium">Voir les paiements &rarr;</a>
+                </div>
+
+                <!-- Card 4: Manage Flights -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Gérer les Vols</h3>
+                    <p class="text-sm text-gray-600">Ajouter de nouveaux vols, modifier les détails des vols existants et gérer les places disponibles.</p>
+                    <a href="flights.html" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800 font-medium">Voir les vols &rarr;</a>
+                </div>
+
+                <!-- Card 5: Manage Destinations -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                    <h3 class="text-lg font-semibold text-indigo-700 mb-2">Gérer les Destinations</h3>
+                    <p class="text-sm text-gray-600">Ajouter et mettre à jour les informations sur les destinations de voyage proposées par l'agence.</p>
+                    <a href="destinations.html" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800 font-medium">Voir les destinations &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="bg-gray-800 text-white text-center p-4 mt-auto">
+        <p>&copy; 2023 Agence de Voyage</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Paiements - Agence de Voyage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <header class="bg-gray-800 text-white p-6 shadow-md">
+        <h1 class="text-3xl font-bold text-center">Gestion des Paiements</h1>
+        <nav class="bg-gray-700 p-4 mt-4">
+            <ul class="flex justify-center space-x-6">
+                <li><a href="index.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Accueil</a></li>
+                <li><a href="clients.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Clients</a></li>
+                <li><a href="reservations.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Réservations</a></li>
+                <li><a href="destinations.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Destinations</a></li>
+                <li><a href="flights.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Vols</a></li>
+                <li><a href="agents.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Espace Agent</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container mx-auto mt-6 mb-6 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-700">Historique des Paiements</h2>
+
+        <div class="mb-6 p-4 bg-gray-50 rounded-lg shadow">
+            <form action="#" method="GET" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 items-end">
+                <div>
+                    <label for="filter_client_payment" class="text-sm font-medium text-gray-700">Client ID:</label>
+                    <input type="text" id="filter_client_payment" name="filter_client_payment" placeholder="ID Client" class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm w-full">
+                </div>
+                <div>
+                    <label for="filter_agent_payment" class="text-sm font-medium text-gray-700">Agent ID:</label>
+                    <input type="text" id="filter_agent_payment" name="filter_agent_payment" placeholder="ID Agent" class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm w-full">
+                </div>
+                <div>
+                    <label for="filter_date_from" class="text-sm font-medium text-gray-700">De:</label>
+                    <input type="date" id="filter_date_from" name="filter_date_from" class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm w-full">
+                </div>
+                <div>
+                    <label for="filter_date_to" class="text-sm font-medium text-gray-700">À:</label>
+                    <input type="date" id="filter_date_to" name="filter_date_to" class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm w-full">
+                </div>
+                <div class="self-end"> <!-- Wrapper div for button alignment -->
+                    <button type="submit" class="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 w-full sm:col-span-1 xl:col-span-1">Filtrer</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 shadow-sm rounded-lg overflow-hidden mb-8">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Paiement</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Réservation</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client (ID/Nom)</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Montant</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date Paiement</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Méthode</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Agent (ID/Nom)</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">P001</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">R001</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">C001 (Jean Dupont)</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">250.00 €</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2023-10-16</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Carte de Crédit</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Payé</span></td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">A01 (Sophie D.)</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><a href="#invoice-P001" class="text-sm py-1 px-3 rounded-md bg-blue-500 text-white hover:bg-blue-600">Voir Facture</a></td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">P002</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">R002</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">C002 (Alice Martin)</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">120.50 €</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2023-11-02</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">PayPal</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Payé</span></td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Online</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><a href="#invoice-P002" class="text-sm py-1 px-3 rounded-md bg-blue-500 text-white hover:bg-blue-600">Voir Facture</a></td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">P003</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">R003</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">C003 (Paul Lefevre)</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">300.00 €</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2023-11-05</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Virement</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En attente</span></td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">A02 (Marc L.)</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700"><a href="#invoice-P003" class="text-sm py-1 px-3 rounded-md bg-blue-500 text-white hover:bg-blue-600">Voir Facture</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr class="my-8 border-gray-300">
+
+        <h2 class="text-2xl font-semibold mb-4 text-gray-700">Exemples de Factures</h2>
+        <div id="invoice-P001" class="mt-6 p-6 border border-gray-200 rounded-lg bg-gray-50 shadow-md">
+            <h3 class="text-xl font-semibold text-gray-700 mb-3">Facture #F2023-001</h3>
+            <p class="mb-1"><strong>Date d'émission:</strong> 2023-10-16</p>
+            <p class="mb-1"><strong>Client:</strong> Jean Dupont (C001)</p>
+            <p class="mb-1"><strong>Réservation:</strong> R001 (Vol V789 - Paris)</p>
+            <p class="mb-1"><strong>Description:</strong> 2 places pour Paris</p>
+            <p class="mb-1"><strong>Montant Total:</strong> 250.00 €</p>
+            <p class="mb-1"><strong>Statut:</strong> Payé</p>
+            <br>
+            <p class="mb-1">Merci pour votre confiance!</p>
+            <p class="mb-1"><em>Agence de Voyage XYZ</em></p>
+        </div>
+         <div id="invoice-P002" class="mt-6 p-6 border border-gray-200 rounded-lg bg-gray-50 shadow-md mt-6"> <!-- Added mt-6 for spacing between invoices -->
+            <h3 class="text-xl font-semibold text-gray-700 mb-3">Facture #F2023-002</h3>
+            <p class="mb-1"><strong>Date d'émission:</strong> 2023-11-02</p>
+            <p class="mb-1"><strong>Client:</strong> Alice Martin (C002)</p>
+            <p class="mb-1"><strong>Réservation:</strong> R002 (Vol V790 - New York)</p>
+            <p class="mb-1"><strong>Description:</strong> 1 place pour New York</p>
+            <p class="mb-1"><strong>Montant Total:</strong> 120.50 €</p>
+            <p class="mb-1"><strong>Statut:</strong> Payé</p>
+            <br>
+            <p class="mb-1">Merci pour votre confiance!</p>
+            <p class="mb-1"><em>Agence de Voyage XYZ</em></p>
+        </div>
+    </main>
+    <footer class="bg-gray-800 text-white text-center p-4 mt-auto">
+        <p>&copy; 2023 Agence de Voyage</p>
+    </footer>
+</body>
+</html>
