@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Destinations - Agence de Voyage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Gestion des Destinations</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                <li><a href="{{ url_for('clients') }}">Clients</a></li>
+                <li><a href="{{ url_for('reservations') }}">Réservations</a></li>
+                <li><a href="{{ url_for('flights') }}">Vols</a></li>
+                <li><a href="{{ url_for('payments') }}">Paiements</a></li>
+                <li><a href="{{ url_for('agents') }}">Espace Agent</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Liste des Destinations</h2>
+        <table class="mb-3">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>URL Image (exemple)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Destination Row 1 -->
+                <tr>
+                    <td>Paris</td>
+                    <td>La ville lumière, capitale de la France.</td>
+                    <td>images/paris.jpg</td>
+                    <td>
+                        <a href="#" class="btn" style="background-color: #ffc107; color: #333;">Modifier</a>
+                        <a href="#" class="btn" style="background-color: #dc3545;">Supprimer</a>
+                    </td>
+                </tr>
+                <!-- Sample Destination Row 2 -->
+                <tr>
+                    <td>Rome</td>
+                    <td>Capitale de l'Italie, riche en histoire.</td>
+                    <td>images/rome.jpg</td>
+                    <td>
+                        <a href="#" class="btn" style="background-color: #ffc107; color: #333;">Modifier</a>
+                        <a href="#" class="btn" style="background-color: #dc3545;">Supprimer</a>
+                    </td>
+                </tr>
+                <!-- Sample Destination Row 3 -->
+                <tr>
+                    <td>Tokyo</td>
+                    <td>Mégalopole japonaise, mélange de tradition et modernité.</td>
+                    <td>images/tokio.jpg</td>
+                    <td>
+                        <a href="#" class="btn" style="background-color: #ffc107; color: #333;">Modifier</a>
+                        <a href="#" class="btn" style="background-color: #dc3545;">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Ajouter/Modifier une Destination</h2>
+        <form action="#" method="POST"> <!-- Action will be handled by backend later -->
+            <div>
+                <label for="nom_destination">Nom de la Destination :</label>
+                <input type="text" id="nom_destination" name="nom_destination" required>
+            </div>
+            <div>
+                <label for="description_destination">Description :</label>
+                <textarea id="description_destination" name="description_destination" rows="3" required></textarea>
+            </div>
+            <div>
+                <label for="image_url_destination">URL de l'image :</label>
+                <input type="text" id="image_url_destination" name="image_url_destination" placeholder="Ex: images/nom_image.jpg">
+            </div>
+            <button type="submit" class="btn">Enregistrer Destination</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2023 Agence de Voyage</p>
+    </footer>
+
+    <script>
+        // Add active class to current page link in nav
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('header nav ul li a');
+            let currentPath = window.location.pathname;
+            if (currentPath.endsWith('/')) {
+                currentPath = currentPath.slice(0, -1);
+            }
+            const currentPageName = currentPath.split('/').pop().replace('.html', '');
+
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                if ( (currentPageName === 'index' || currentPageName === '') && (linkPath.endsWith('/index') || linkPath === '/' || linkPath.endsWith('/index.html')) ){
+                    link.classList.add('active');
+                } else if (linkPath.includes(currentPageName) && currentPageName !== 'index' && currentPageName !== '') {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

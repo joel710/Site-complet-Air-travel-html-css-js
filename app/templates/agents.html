@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Agent - Agence de Voyage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Espace Agent</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Accueil</a></li>
+                <li><a href="{{ url_for('clients') }}">Clients</a></li>
+                <li><a href="{{ url_for('reservations') }}">Réservations</a></li>
+                <li><a href="{{ url_for('destinations') }}">Destinations</a></li>
+                <li><a href="{{ url_for('flights') }}">Vols</a></li>
+                <li><a href="{{ url_for('payments') }}">Paiements</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <p>Contenu de la page de l'espace agent (connexion, tableau de bord, etc.).</p>
+    </main>
+    <footer>
+        <p>&copy; 2023 Agence de Voyage</p>
+    </footer>
+    <script>
+        // Add active class to current page link in nav
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('header nav ul li a');
+            let currentPath = window.location.pathname;
+            if (currentPath.endsWith('/')) {
+                currentPath = currentPath.slice(0, -1);
+            }
+            const currentPageName = currentPath.split('/').pop().replace('.html', '');
+
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                // Handle cases where url_for might generate different paths
+                // This logic tries to match based on the expected endpoint name
+                if ( (currentPageName === 'index' || currentPageName === '') && (linkPath.endsWith('/index') || linkPath === '/' || linkPath.endsWith('/index.html')) ){"
+                    link.classList.add('active');
+                } else if (linkPath.includes(currentPageName) && currentPageName !== 'index' && currentPageName !== '') {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
