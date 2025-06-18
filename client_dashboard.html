@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Client - Horizon Voyages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Additional custom styles if necessary, or can be pure Tailwind */
+        .status-confirmed { background-color: #D1FAE5; color: #065F46; } /* Tailwind green-100, green-700 */
+        .status-pending { background-color: #FEF3C7; color: #92400E; } /* Tailwind yellow-100, yellow-700 */
+        .status-cancelled { background-color: #FEE2E2; color: #991B1B; } /* Tailwind red-100, red-700 */
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <header class="bg-gray-800 text-white p-6 shadow-md">
+        <h1 class="text-5xl font-bold text-center text-yellow-300">Horizon Voyages</h1>
+        <nav class="bg-gray-700 p-4 mt-4">
+            <ul class="flex justify-center space-x-6">
+                <li><a href="index.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Accueil</a></li>
+                <li><a href="client_dashboard.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium bg-yellow-500 text-gray-900">Mon Tableau de Bord</a></li>
+                <li><a href="destinations.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Destinations</a></li>
+                <li><a href="reservations.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Nouvelle Réservation</a></li>
+                <!-- Potentially a logout link here in a real app -->
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto mt-8 mb-10 p-6 flex-grow">
+        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-lg shadow-xl mb-10">
+            <h2 class="text-4xl font-bold">Bienvenue, [Nom du Client]!</h2>
+            <p class="mt-2 text-lg">C'est un plaisir de vous revoir. Gérez vos voyages et explorez de nouvelles aventures.</p>
+        </div>
+
+        <!-- Quick Stats Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="text-xl font-semibold text-indigo-700 mb-2">Voyages à Venir</h3>
+                <p class="text-3xl font-bold text-indigo-600">2</p> <!-- Placeholder -->
+                <p class="text-sm text-gray-500 mt-1">Préparez vos valises !</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="text-xl font-semibold text-green-700 mb-2">Voyages Effectués</h3>
+                <p class="text-3xl font-bold text-green-600">5</p> <!-- Placeholder -->
+                <p class="text-sm text-gray-500 mt-1">Merci pour votre fidélité.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="text-xl font-semibold text-yellow-700 mb-2">Paiements Récents</h3>
+                <p class="text-3xl font-bold text-yellow-600">1</p> <!-- Placeholder -->
+                <p class="text-sm text-gray-500 mt-1">Dans les 30 derniers jours.</p>
+            </div>
+        </section>
+
+        <!-- Current Reservations Section -->
+        <section class="mb-12">
+            <h3 class="text-2xl font-semibold text-gray-700 mb-6">Mes Réservations Actuelles</h3>
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destination</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date de Départ</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <!-- Placeholder Row 1 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Paris, France</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">15 Décembre 2023</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full status-confirmed">Confirmé</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Voir Détails</a>
+                            </td>
+                        </tr>
+                        <!-- Placeholder Row 2 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Tokyo, Japon</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">20 Janvier 2024</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full status-pending">En Attente de Paiement</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900 mr-3">Voir Détails</a>
+                                <a href="payments.html" class="text-green-600 hover:text-green-900">Payer Maintenant</a>
+                            </td>
+                        </tr>
+                        <!-- More rows can be added here -->
+                    </tbody>
+                </table>
+                 <div class="p-4 bg-gray-50 border-t border-gray-200 text-center">
+                    <a href="reservations.html" class="text-blue-600 hover:text-blue-800 font-semibold">Créer une nouvelle réservation &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reservation History Section -->
+        <section class="mb-12">
+            <h3 class="text-2xl font-semibold text-gray-700 mb-6">Historique de mes Voyages</h3>
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                <div class="divide-y divide-gray-200">
+                    <!-- Placeholder Item 1 -->
+                    <div class="p-6 hover:bg-gray-50 transition duration-150 ease-in-out">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-lg font-semibold text-gray-800">Rome, Italie</p>
+                                <p class="text-sm text-gray-500">Du 10 Mai 2023 au 17 Mai 2023</p>
+                            </div>
+                            <span class="text-sm text-gray-600">Terminé</span>
+                        </div>
+                        <a href="#" class="text-sm text-indigo-500 hover:text-indigo-700 mt-2 inline-block">Voir les détails du voyage &rarr;</a>
+                    </div>
+                    <!-- Placeholder Item 2 -->
+                    <div class="p-6 hover:bg-gray-50 transition duration-150 ease-in-out">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-lg font-semibold text-gray-800">Barcelone, Espagne</p>
+                                <p class="text-sm text-gray-500">Du 01 Février 2023 au 05 Février 2023</p>
+                            </div>
+                            <span class="text-sm text-gray-600">Terminé</span>
+                        </div>
+                         <a href="#" class="text-sm text-indigo-500 hover:text-indigo-700 mt-2 inline-block">Voir les détails du voyage &rarr;</a>
+                    </div>
+                    <!-- More items can be added here -->
+                </div>
+                <div class="p-4 bg-gray-50 border-t border-gray-200 text-center">
+                    <a href="#" class="text-gray-600 hover:text-gray-800 font-semibold">Voir tout l'historique &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment History Section -->
+        <section>
+            <h3 class="text-2xl font-semibold text-gray-700 mb-6">Historique de mes Paiements</h3>
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                <ul class="divide-y divide-gray-200">
+                    <!-- Placeholder Payment 1 -->
+                    <li class="p-6 hover:bg-gray-50 transition duration-150 ease-in-out">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-md font-semibold text-gray-800">Paiement pour Réservation #R001 (Paris)</p>
+                                <p class="text-sm text-gray-500">Date: 16 Octobre 2023 - Montant: 250.00 €</p>
+                            </div>
+                            <a href="payments.html#invoice-P001" class="text-sm py-2 px-4 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors">Voir Facture</a>
+                        </div>
+                    </li>
+                    <!-- Placeholder Payment 2 -->
+                    <li class="p-6 hover:bg-gray-50 transition duration-150 ease-in-out">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-md font-semibold text-gray-800">Paiement pour Réservation #R002 (New York)</p>
+                                <p class="text-sm text-gray-500">Date: 02 Novembre 2023 - Montant: 120.50 €</p>
+                            </div>
+                            <a href="payments.html#invoice-P002" class="text-sm py-2 px-4 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors">Voir Facture</a>
+                        </div>
+                    </li>
+                    <!-- More payments can be added here -->
+                </ul>
+                 <div class="p-4 bg-gray-50 border-t border-gray-200 text-center">
+                    <a href="payments.html" class="text-gray-600 hover:text-gray-800 font-semibold">Voir tous les paiements &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white pt-10 pb-4 mt-auto">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2023 Horizon Voyages. Tous droits réservés.</p>
+            <p class="text-sm text-gray-400 mt-2">Votre partenaire de confiance pour des voyages inoubliables.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
