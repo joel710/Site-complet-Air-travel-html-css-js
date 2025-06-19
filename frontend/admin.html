@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizon Voyages Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                position: absolute;
+                z-index: 50;
+                height: 100vh;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 40;
+            }
+
+            .overlay.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="sidebar bg-blue-900 text-white w-64 flex-shrink-0">
+            <div class="p-4 flex items-center justify-between border-b border-blue-800">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-plane text-2xl text-blue-300"></i>
+                    <span class="text-xl font-bold">Horizon Voyages</span>
+                </div>
+                <button id="closeSidebar" class="md:hidden text-xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <div class="mb-6">
+                    <div class="flex items-center space-x-3 mb-4 p-2 bg-blue-800 rounded-lg">
+                        <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium">Admin</p>
+                            <p class="text-xs text-blue-300">Administrateur</p>
+                        </div>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 p-2 rounded-lg bg-blue-800">
+                                <i class="fas fa-tachometer-alt w-5 text-center"></i>
+                                <span>Tableau de bord</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-blue-800 transition">
+                                <i class="fas fa-plane w-5 text-center"></i>
+                                <span>Vols</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-blue-800 transition">
+                                <i class="fas fa-users w-5 text-center"></i>
+                                <span>Clients</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-blue-800 transition">
+                                <i class="fas fa-calendar-alt w-5 text-center"></i>
+                                <span>Réservations</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-blue-800 transition">
+                                <i class="fas fa-chart-line w-5 text-center"></i>
+                                <span>Statistiques</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-blue-800 transition">
+                                <i class="fas fa-cog w-5 text-center"></i>
+                                <span>Paramètres</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="absolute bottom-0 w-full p-4 border-t border-blue-800">
+                <a href="#" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-blue-800 transition">
+                    <i class="fas fa-sign-out-alt w-5 text-center"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Overlay for mobile -->
+        <div id="overlay" class="overlay"></div>
+
+        <!-- Main content -->
+        <div class="flex-1 overflow-auto">
+            <!-- Header -->
+            <header class="bg-white shadow-sm p-4 flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <button id="toggleSidebar" class="md:hidden text-xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="text-xl font-bold text-gray-800">Tableau de bord</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" placeholder="Rechercher..."
+                            class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div class="relative">
+                        <button class="p-2 rounded-full hover:bg-gray-100">
+                            <i class="fas fa-bell text-gray-600"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main content area -->
+            <main class="p-4">
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500">Réservations aujourd'hui</p>
+                                <p class="text-2xl font-bold">142</p>
+                                <p class="text-green-500 text-sm flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i> 12% vs hier
+                                </p>
+                            </div>
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <i class="fas fa-ticket-alt text-blue-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500">Clients actifs</p>
+                                <p class="text-2xl font-bold">2,548</p>
+                                <p class="text-green-500 text-sm flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i> 5% ce mois
+                                </p>
+                            </div>
+                            <div class="bg-green-100 p-3 rounded-full">
+                                <i class="fas fa-users text-green-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500">Vols programmés</p>
+                                <p class="text-2xl font-bold">87</p>
+                                <p class="text-red-500 text-sm flex items-center">
+                                    <i class="fas fa-arrow-down mr-1"></i> 3% cette semaine
+                                </p>
+                            </div>
+                            <div class="bg-purple-100 p-3 rounded-full">
+                                <i class="fas fa-plane text-purple-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500">Revenu total</p>
+                                <p class="text-2xl font-bold">$48,250</p>
+                                <p class="text-green-500 text-sm flex items-center">
+                                    <i class="fas fa-arrow-up mr-1"></i> 18% ce mois
+                                </p>
+                            </div>
+                            <div class="bg-yellow-100 p-3 rounded-full">
+                                <i class="fas fa-dollar-sign text-yellow-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Recent Bookings -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                    <!-- Revenue Chart -->
+                    <div class="bg-white rounded-lg shadow p-6 lg:col-span-2">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-lg font-semibold">Revenu mensuel</h2>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 text-xs bg-blue-100 text-blue-600 rounded-full">Mois</button>
+                                <button class="px-3 py-1 text-xs bg-gray-100 text-gray-600 rounded-full">Année</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Popular Destinations -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h2 class="text-lg font-semibold mb-4">Destinations populaires</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Paris, France</p>
+                                        <p class="text-xs text-gray-500">CDG</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-medium">142 réservations</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">New York, USA</p>
+                                        <p class="text-xs text-gray-500">JFK</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-medium">98 réservations</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-purple-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Tokyo, Japon</p>
+                                        <p class="text-xs text-gray-500">HND</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-medium">76 réservations</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-yellow-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Dubai, EAU</p>
+                                        <p class="text-xs text-gray-500">DXB</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-medium">64 réservations</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                                        <i class="fas fa-map-marker-alt text-red-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Londres, UK</p>
+                                        <p class="text-xs text-gray-500">LHR</p>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-medium">58 réservations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Bookings and Flight Status -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Recent Bookings -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-lg font-semibold">Réservations récentes</h2>
+                                <a href="#" class="text-blue-600 text-sm">Voir tout</a>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Client</th>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Vol</th>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Date</th>
+                                            <th
+                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Statut</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div
+                                                        class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                                        <i class="fas fa-user text-blue-600"></i>
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Jean Dupont</div>
+                                                        <div class="text-sm text-gray-500">jean@example.com</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">AF123</div>
+                                                <div class="text-sm text-gray-500">PAR → NYC</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">15 Juin 2023</div>
+                                                <div class="text-sm text-gray-500">10:30</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Confirmé
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div
+                                                        class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
+                                                        <i class="fas fa-user text-purple-600"></i>
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Marie Lambert
+                                                        </div>
+                                                        <div class="text-sm text-gray-500">marie@example.com</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">EK456</div>
+                                                <div class="text-sm text-gray-500">DXB → CDG</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">16 Juin 2023</div>
+                                                <div class="text-sm text-gray-500">14:45</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    En attente
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div
+                                                        class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
+                                                        <i class="fas fa-user text-green-600"></i>
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Thomas Martin
+                                                        </div>
+                                                        <div class="text-sm text-gray-500">thomas@example.com</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">JL789</div>
+                                                <div class="text-sm text-gray-500">HND → LAX</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">17 Juin 2023</div>
+                                                <div class="text-sm text-gray-500">08:15</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                    Payé
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flight Status -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-lg font-semibold">Statut des vols</h2>
+                                <a href="#" class="text-blue-600 text-sm">Voir tout</a>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-green-500 pl-4 py-2">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="font-medium">AF123 - Paris à New York</p>
+                                            <p class="text-sm text-gray-500">Décollage: 10:30 • Arrivée: 13:15 (local)
+                                            </p>
+                                        </div>
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">À
+                                            l'heure</span>
+                                    </div>
+                                </div>
+                                <div class="border-l-4 border-red-500 pl-4 py-2">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="font-medium">BA456 - Londres à Dubai</p>
+                                            <p class="text-sm text-gray-500">Décollage: 14:00 • Arrivée: 23:30 (local)
+                                            </p>
+                                        </div>
+                                        <span
+                                            class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Retardé</span>
+                                    </div>
+                                    <p class="text-xs text-red-600 mt-1">Retard prévu: 1h30 (Météo)</p>
+                                </div>
+                                <div class="border-l-4 border-green-500 pl-4 py-2">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="font-medium">EK789 - Dubai à Sydney</p>
+                                            <p class="text-sm text-gray-500">Décollage: 21:45 • Arrivée: 17:30+1 (local)
+                                            </p>
+                                        </div>
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">À
+                                            l'heure</span>
+                                    </div>
+                                </div>
+                                <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="font-medium">QF101 - Sydney à Los Angeles</p>
+                                            <p class="text-sm text-gray-500">Décollage: 11:00 • Arrivée: 06:30 (local)
+                                            </p>
+                                        </div>
+                                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">En
+                                            embarquement</span>
+                                    </div>
+                                </div>
+                                <div class="border-l-4 border-blue-500 pl-4 py-2">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="font-medium">AA202 - Chicago à Miami</p>
+                                            <p class="text-sm text-gray-500">Décollage: 16:20 • Arrivée: 19:45 (local)
+                                            </p>
+                                        </div>
+                                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">En
+                                            vol</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Toggle sidebar on mobile
+        const toggleSidebar = document.getElementById('toggleSidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.getElementById('overlay');
+
+        toggleSidebar.addEventListener('click', () => {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Revenue Chart
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'],
+                datasets: [{
+                    label: 'Revenu (en milliers)',
+                    data: [32, 28, 35, 40, 42, 48, 45, 50, 55, 60, 65, 70],
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            drawBorder: false
+                        },
+                        ticks: {
+                            callback: function (value) {
+                                return '$' + value + 'k';
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Dark mode toggle (example functionality)
+        const darkModeToggle = document.createElement('button');
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        darkModeToggle.className = 'p-2 rounded-full hover:bg-gray-100 hidden md:block';
+        document.querySelector('header > div:last-child').prepend(darkModeToggle);
+
+        darkModeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            darkModeToggle.innerHTML = document.documentElement.classList.contains('dark')
+                ? '<i class="fas fa-sun"></i>'
+                : '<i class="fas fa-moon"></i>';
+        });
+    </script>
+</body>
+
+</html>

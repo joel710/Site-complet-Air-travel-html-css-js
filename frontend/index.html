@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Agence de Voyage</title>
+    
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <header class="bg-gray-800 text-white p-6 shadow-md">
+        <h1 class="text-5xl font-bold text-center text-yellow-300">Horizon Voyages</h1>
+        <nav class="bg-gray-700 p-4">
+            <ul class="flex justify-center space-x-6">
+                <li><a href="index.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Accueil</a></li>
+                <li><a href="clients.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Clients (Admin)</a></li>
+                <li><a href="reservations.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Réservations</a></li>
+                <li><a href="destinations.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Destinations</a></li>
+                <li><a href="flights.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Vols</a></li>
+                <li><a href="payments.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Paiements</a></li>
+                <li><a href="client_dashboard.html" class="hover:bg-yellow-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium text-yellow-300">Mon Espace Client</a></li>
+                <li><a href="agents.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Espace Agent</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex flex-col items-center justify-center text-center text-white">
+        <video autoplay loop muted playsinline poster="images/img1.jpg" class="absolute top-0 left-0 w-full h-full object-cover">
+            <source src="images/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+        <div class="relative z-10 p-4">
+            <h2 class="text-6xl font-bold mb-4">Explorez le Monde, Créez Vos Souvenirs Inoubliables</h2>
+            <p class="text-xl mb-8">Votre aventure commence ici. Découvrez des destinations de rêve et des offres exclusives.</p>
+            <a href="destinations.html" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg text-lg">
+                Découvrez nos Destinations
+            </a>
+        </div>
+    </section>
+
+    <!-- Popular Destinations Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Nos Destinations Populaires</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Destination Card 1: Paris -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="images/paris.jpg" alt="Paris" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Paris</h3>
+                        <p class="text-gray-600 mb-4">Découvrez la ville lumière, ses monuments emblématiques et sa gastronomie renommée.</p>
+                        <a href="destinations.html" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-4 rounded-lg text-base">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Destination Card 2: Rome -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="images/rome.jpg" alt="Rome" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Rome</h3>
+                        <p class="text-gray-600 mb-4">Plongez dans l'histoire de la ville éternelle, explorez ses ruines antiques et savourez la cuisine italienne.</p>
+                        <a href="destinations.html" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-4 rounded-lg text-base">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Destination Card 3: Tokyo -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="images/tokio.jpg" alt="Tokyo" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Tokyo</h3>
+                        <p class="text-gray-600 mb-4">Explorez la métropole fascinante de Tokyo, un mélange unique de tradition et de modernité.</p>
+                        <a href="destinations.html" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-4 rounded-lg text-base">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Destination Card 4: Miami -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="images/Miami.jpg" alt="Miami" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Miami</h3>
+                        <p class="text-gray-600 mb-4">Profitez des plages ensoleillées, de l'architecture Art Déco et de l'ambiance vibrante de Miami.</p>
+                        <a href="destinations.html" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-4 rounded-lg text-base">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Offres Spéciales du Moment</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Offer Card 1: Prague -->
+                <div class="bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-lg shadow-xl overflow-hidden p-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-3xl font-bold">Weekend Magique à Prague</h3>
+                        <span class="bg-yellow-400 text-gray-900 text-sm font-semibold px-3 py-1 rounded-full">Offre Limitée</span>
+                    </div>
+                    <p class="mb-4 text-lg">Explorez la beauté historique de Prague avec notre offre spéciale weekend. Inclut vol A/R et 2 nuits d'hôtel.</p>
+                    <p class="text-2xl font-semibold mb-6">Dès 299€/personne</p>
+                    <a href="reservations.html" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg text-lg">
+                        Voir les Détails
+                    </a>
+                </div>
+
+                <!-- Offer Card 2: Thailand -->
+                <div class="bg-gradient-to-br from-green-500 to-teal-600 text-white rounded-lg shadow-xl overflow-hidden p-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-3xl font-bold">Aventure Tropicale en Thaïlande</h3>
+                        <span class="bg-pink-500 text-white text-sm font-semibold px-3 py-1 rounded-full">Exclusivité Web</span>
+                    </div>
+                    <p class="mb-4 text-lg">Plages de rêve, temples anciens et cuisine exotique vous attendent. Pack 10 jours tout compris.</p>
+                    <p class="text-2xl font-semibold mb-6">-15% sur le package complet</p>
+                    <a href="destinations.html" class="inline-block bg-pink-400 hover:bg-pink-500 text-white font-bold py-3 px-6 rounded-lg text-lg">
+                        Découvrir l'Offre
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-12 bg-gray-200">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Ce que disent nos clients</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <div class="text-yellow-400 text-2xl mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Voyage extraordinaire organisé par Horizon Voyages ! Tout était parfait, de la réservation au retour. Je recommande vivement !"</p>
+                    <p class="text-gray-800 font-semibold text-right">- Sophie B.</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <div class="text-yellow-400 text-2xl mb-2">★★★★★</div>
+                    <p class="text-gray-600 italic mb-4">"Une équipe à l'écoute et très professionnelle. Ils ont su trouver le séjour idéal pour notre famille. Merci Horizon Voyages !"</p>
+                    <p class="text-gray-800 font-semibold text-right">- David K.</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <div class="text-yellow-400 text-2xl mb-2">★★★★☆</div>
+                    <p class="text-gray-600 italic mb-4">"J'ai découvert des endroits magnifiques grâce à leurs conseils avisés. Les offres sont vraiment intéressantes."</p>
+                    <p class="text-gray-800 font-semibold text-right">- Laura M.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Snippet Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8">À Propos de Horizon Voyages</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
+                Chez Horizon Voyages, nous sommes passionnés par la création d'expériences de voyage mémorables. Notre mission est de vous offrir des aventures personnalisées qui dépassent vos attentes, avec un service client exceptionnel et une attention méticuleuse aux détails.
+            </p>
+            <a href="about.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg text-lg">
+                En savoir plus sur nous
+            </a>
+        </div>
+    </section>
+
+    <main class="container mx-auto mt-6 mb-6 p-6 bg-white shadow-lg rounded-lg">
+        <p>Bienvenue sur le site de l'Agence de Voyage !</p>
+        <!-- Original content of index.html would go here if it was preserved -->
+        <!-- For now, it's a generic welcome message -->
+    </main>
+    <footer class="bg-gray-800 text-white pt-10 pb-4 mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contactez-nous</h3>
+                    <p class="mb-2">123 Rue de l'Horizon, 75000 Paris, France</p>
+                    <p class="mb-2">Téléphone : <a href="tel:+33123456789" class="hover:text-yellow-300">+33 1 23 45 67 89</a></p>
+                    <p>Email : <a href="mailto:contact@horizonvoyages.com" class="hover:text-yellow-300">contact@horizonvoyages.com</a></p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Liens Rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-yellow-300">Accueil</a></li>
+                        <li><a href="destinations.html" class="hover:text-yellow-300">Destinations</a></li>
+                        <li><a href="reservations.html" class="hover:text-yellow-300">Réservations</a></li>
+                        <li><a href="#" class="hover:text-yellow-300">FAQ</a></li>
+                        <li><a href="#" class="hover:text-yellow-300">Termes & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Suivez-nous</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-yellow-300">F</a> <!-- Placeholder for Facebook Icon -->
+                        <a href="#" class="text-2xl hover:text-yellow-300">T</a> <!-- Placeholder for Twitter Icon -->
+                        <a href="#" class="text-2xl hover:text-yellow-300">I</a> <!-- Placeholder for Instagram Icon -->
+                    </div>
+                </div>
+            </div>
+            <div class="text-center border-t border-gray-700 pt-4">
+                <p>&copy; 2023 Horizon Voyages. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Agent - Agence de Voyage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <header class="bg-gray-800 text-white p-6 shadow-md">
+        <h1 class="text-3xl font-bold text-center">Espace Agent</h1>
+        <nav class="bg-gray-700 p-4 mt-4">
+            <ul class="flex justify-center space-x-6">
+                <li><a href="index.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Accueil</a></li>
+                <li><a href="clients.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Clients</a></li>
+                <li><a href="reservations.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Réservations</a></li>
+                <li><a href="destinations.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Destinations</a></li>
+                <li><a href="flights.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Vols</a></li>
+                <li><a href="payments.html" class="hover:bg-gray-600 px-3 py-2 rounded-md text-sm font-medium">Paiements</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container mx-auto mt-6 mb-6 p-6">
+
+        <!-- Login Form Section -->
+        <section class="max-w-md mx-auto mt-10 p-8 bg-white rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold text-center text-gray-700 mb-8">Connexion Agent</h2>
+            <form action="#" method="POST" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur :</label>
+                    <input type="text" id="username" name="username" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Connexion</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Conceptual Dashboard Section -->
+        <!-- In a real app, this would be shown conditionally after successful login -->
+        <section class="mt-12">
+            <div class="p-8 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 text-white rounded-lg shadow-xl mb-10">
+                 <h2 class="text-4xl font-bold text-center">Tableau de Bord de l'Agent</h2>
+                 <p class="text-center text-indigo-100 mt-2">Vue d'ensemble des opérations critiques et accès rapides.</p>
+            </div>
+
+            <!-- Stats Cards Row (New) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <!-- Card 1: Pending Reservations -->
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-gray-200 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Réservations en Attente</p>
+                            <p class="text-3xl font-bold text-indigo-600">5</p>
+                        </div>
+                        <div class="bg-indigo-100 text-indigo-600 p-3 rounded-full">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                    </div>
+                    <a href="reservations.html?status=en+attente" class="text-sm text-indigo-500 hover:text-indigo-700 mt-3 block font-semibold">Voir détails &rarr;</a>
+                </div>
+
+                <!-- Card 2: Active Clients -->
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-gray-200 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Clients Actifs</p>
+                            <p class="text-3xl font-bold text-green-600">120</p>
+                        </div>
+                        <div class="bg-green-100 text-green-600 p-3 rounded-full">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                    </div>
+                    <a href="clients.html" class="text-sm text-green-500 hover:text-green-700 mt-3 block font-semibold">Gérer les clients &rarr;</a>
+                </div>
+
+                <!-- Card 3: Revenue Today -->
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-gray-200 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Revenu (Jour)</p>
+                            <p class="text-3xl font-bold text-yellow-500">€1,250</p>
+                        </div>
+                        <div class="bg-yellow-100 text-yellow-500 p-3 rounded-full">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                    </div>
+                     <a href="payments.html" class="text-sm text-yellow-500 hover:text-yellow-700 mt-3 block font-semibold">Voir les paiements &rarr;</a>
+                </div>
+
+                <!-- Card 4: Flights Scheduled -->
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-gray-200 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Vols (Prochains 24h)</p>
+                            <p class="text-3xl font-bold text-blue-600">8</p>
+                        </div>
+                        <div class="bg-blue-100 text-blue-600 p-3 rounded-full">
+                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        </div>
+                    </div>
+                    <a href="flights.html" class="text-sm text-blue-500 hover:text-blue-700 mt-3 block font-semibold">Gérer les vols &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Quick Actions Title -->
+            <div class="mb-8 text-center">
+                <h3 class="text-2xl font-semibold text-gray-700">Accès Rapides aux Modules de Gestion</h3>
+                <p class="text-gray-500">Gérez facilement tous les aspects de l'agence.</p>
+            </div>
+
+            <!-- Navigation Cards (Existing cards, but restyled) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Manage Reservations -->
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-gray-200 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 text-purple-600 p-3 rounded-full mr-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-purple-700">Gérer les Réservations</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">Accéder à la liste des réservations, modifier les statuts, et ajouter de nouvelles réservations.</p>
+                    <a href="reservations.html" class="font-semibold text-purple-600 hover:text-purple-800 transition-colors duration-300">Accéder aux réservations &rarr;</a>
+                </div>
+
+                <!-- Card 2: Manage Clients -->
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-gray-200 transform hover:-translate-y-1">
+                     <div class="flex items-center mb-4">
+                        <div class="bg-teal-100 text-teal-600 p-3 rounded-full mr-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-teal-700">Gérer les Clients</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">Consulter et mettre à jour les informations des clients, voir leur historique de voyage.</p>
+                    <a href="clients.html" class="font-semibold text-teal-600 hover:text-teal-800 transition-colors duration-300">Accéder aux clients &rarr;</a>
+                </div>
+
+                <!-- Card 3: Payment Reports -->
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-gray-200 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-orange-100 text-orange-600 p-3 rounded-full mr-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-orange-700">Rapports de Paiement</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">Visualiser l'historique des paiements et générer des rapports financiers.</p>
+                    <a href="payments.html" class="font-semibold text-orange-600 hover:text-orange-800 transition-colors duration-300">Accéder aux paiements &rarr;</a>
+                </div>
+
+                <!-- Card 4: Manage Flights -->
+                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-gray-200 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 text-red-600 p-3 rounded-full mr-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-red-700">Gérer les Vols</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">Ajouter, modifier les vols et gérer les places disponibles.</p>
+                    <a href="flights.html" class="font-semibold text-red-600 hover:text-red-800 transition-colors duration-300">Accéder aux vols &rarr;</a>
+                </div>
+
+                <!-- Card 5: Manage Destinations -->
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out border border-gray-200 transform hover:-translate-y-1">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-lime-100 text-lime-600 p-3 rounded-full mr-4">
+                           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-lime-700">Gérer les Destinations</h3>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">Mettre à jour les informations sur les destinations de voyage.</p>
+                    <a href="destinations.html" class="font-semibold text-lime-600 hover:text-lime-800 transition-colors duration-300">Accéder aux destinations &rarr;</a>
+                </div>
+                 <!-- Add an empty div to balance the grid if there are 5 items in a 3-column layout -->
+                <div class="hidden lg:block"></div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white text-center p-4 mt-auto">
+        <p>&copy; 2023 Agence de Voyage</p>
+    </footer>
+</body>
+</html>
